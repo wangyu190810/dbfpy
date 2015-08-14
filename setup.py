@@ -1,6 +1,10 @@
 #! /usr/bin/env python
 
-from distutils.core import setup
+try:
+    from setuptools import setup
+except ImportError:
+    from distutils.core import setup
+
 
 DESCRIPTION = """\
 dbfpy is a python-only module for reading and writing DBF-files.
@@ -16,19 +20,19 @@ Many different extensions have been used; dbfpy can read and write
 only simple DBF-files.
 """
 
-def run():
-    setup(name="dbfpy",
-        version="2.2.5",
+
+setup(name="dbfpy",
+        version="2.2.6",
         description="Access .DBF (dBase) files from python",
         url="http://dbfpy.sourceforge.net/",
         license="public domain",
         author="Jeff Kunce",
-        maintainer_email="dbfpy-users@lists.sourceforge.net",
+        maintainer_email="dbfpy-users@lists.sourceforge.net,190810401@qq.com",
         packages=["dbfpy"],
-        long_description=DESCRIPTION,
-        download_url=
-            "http://sourceforge.net/project/showfiles.php?group_id=140566",
-        platforms=["OS Independent"],
+        package_dir={'dbfpy': 'dbfpy'},
+        include_package_data=True,
+        zip_safe=True,
+        install_requires=[],
         classifiers=[
             "Development Status :: 5 - Production/Stable",
             "Intended Audience :: Developers",
@@ -37,10 +41,10 @@ def run():
             "Programming Language :: Python",
             "Topic :: Database",
             "Topic :: Software Development :: Libraries :: Python Modules",
+            'Programming Language :: Python :: 2.7',
+            'Programming Language :: Python :: 3.2',
         ],
-    )
+)
 
-if __name__ == "__main__":
-    run()
 
 # vim: set et sts=4 sw=4 :

@@ -241,12 +241,20 @@ class DbfNumericFieldDef(DbfFieldDef):
 
         """
         value = value.strip(" \0")
+        try:
+            if "." in value:
+                return float(value)
+        except ValueError:
+            return value
+
         if "." in value:
             # a float (has decimal separator)
             return float(value)
         elif value:
-            # must be an integer
-            return int(value)
+            try:
+                return int(value)
+            except ValueError:
+                return value
         else:
             return 0
 
